@@ -1,4 +1,10 @@
 {
+    "name": "bullder/text-magic",
+    "description": "Quick test for amth",
+    "keywords": [
+        "math test"
+    ],
+    "license": "MIT",
     "require": {
         "symfony/framework-bundle": "^7.1",
         "twig/twig": "^3.12",
