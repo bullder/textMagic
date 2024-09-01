@@ -26,8 +26,8 @@ class Result
     #[ORM\ManyToOne(targetEntity: Test::class)]
     private Test $test;
 
-    public function __construct(
-    ) {
+    public function __construct()
+    {
         $this->resultQuestions = new ArrayCollection();
     }
 
