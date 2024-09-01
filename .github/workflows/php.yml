@@ -84,4 +84,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: bullder/textMagic:latest, bullder/textMagic:${{ github.sha }}
+          tags: bullder/textmagic:latest, bullder/textmagic:${{ github.sha }}
