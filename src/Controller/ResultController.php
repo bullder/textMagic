@@ -3,10 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Result;
-use App\Entity\ResultQuestion;
 use App\Entity\ResultRequest;
 use App\Handler\ResultHandler;
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -32,12 +30,11 @@ class ResultController extends AbstractController
         return $this->redirect($this->generateUrl('show', ['id' => $result->id]));
     }
 
-
     #[Route('/show/{id}', name: 'show', methods: ['GET'])]
     final public function result(string $id): Response
     {
         $result = $this->entityManager->getRepository(Result::class)->findOneBy(['id' => $id]);
-        if ($result === null) {
+        if (null === $result) {
             throw $this->createNotFoundException('Result not found');
         }
 

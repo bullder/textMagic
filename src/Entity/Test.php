@@ -22,9 +22,8 @@ class Test
         #[ORM\Column(length: 255)]
         public string $title,
         #[ORM\Column(length: 255)]
-        public string $text
-    )
-    {
+        public string $text,
+    ) {
         $this->questions = new ArrayCollection();
     }
 

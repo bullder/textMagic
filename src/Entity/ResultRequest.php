@@ -9,8 +9,7 @@ readonly class ResultRequest
     public function __construct(
         public int $testId,
         public array $choices,
-    )
-    {
+    ) {
     }
 
     public static function fromRequest(string $testId, Request $request): self

@@ -20,7 +20,7 @@ class TestController extends AbstractController
     public function index(int $id): Response
     {
         $test = $this->repository->findOneById($id);
-        if ($test === null) {
+        if (null === $test) {
             throw $this->createNotFoundException('Test not found');
         }
 

@@ -22,7 +22,7 @@ class ResultHandler
     final public function handle(ResultRequest $resultRequest): Result
     {
         $test = $this->testRepository->findOneById($resultRequest->testId);
-        if ($test === null) {
+        if (null === $test) {
             throw new \InvalidArgumentException('Test not found');
         }
 
@@ -39,12 +39,12 @@ class ResultHandler
 
         foreach ($resultRequest->choices as $questionId => $answerId) {
             $question = $test->getQuestionById($questionId);
-            if ($question === null) {
+            if (null === $question) {
                 throw new \InvalidArgumentException('Question not found');
             }
 
             $answer = $question->getAnswerById($answerId);
-            if ($answer === null) {
+            if (null === $answer) {
                 throw new \InvalidArgumentException('Answer not found');
             }
 

@@ -30,7 +30,7 @@ class ResultHandlerTest extends TestCase
         $this->testRepository->method('findOneById')->willReturn(AppFixtures::prepareTest());
 
         $resultRequest = new ResultRequest(1, $choices);
-        if ($exception !== '') {
+        if ('' !== $exception) {
             $this->expectExceptionMessage($exception);
         }
         $this->resultHandler->handle($resultRequest);

@@ -19,9 +19,8 @@ class ResultQuestion
         #[ORM\ManyToOne(targetEntity: Question::class)]
         public Question $question,
         #[ORM\ManyToOne(targetEntity: Answer::class)]
-        public Answer $selectedAnswer
-    )
-    {
+        public Answer $selectedAnswer,
+    ) {
     }
 
     public function setResult(Result $result): self

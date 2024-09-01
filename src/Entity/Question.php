@@ -22,9 +22,8 @@ class Question
 
     public function __construct(
         #[ORM\Column(length: 255)]
-        public string $text
-    )
-    {
+        public string $text,
+    ) {
         $this->answers = new ArrayCollection();
     }
 

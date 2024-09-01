@@ -27,8 +27,7 @@ class Result
     private Test $test;
 
     public function __construct(
-    )
-    {
+    ) {
         $this->resultQuestions = new ArrayCollection();
     }
 
@@ -45,7 +44,7 @@ class Result
         $this->resultQuestions->add($resultQuestion);
         $this->maxScore = $this->resultQuestions->count();
         if ($resultQuestion->selectedAnswer->isCorrect) {
-            $this->score++;
+            ++$this->score;
         }
 
         return $this;

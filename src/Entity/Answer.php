@@ -19,9 +19,8 @@ class Answer
         #[ORM\Column(length: 255)]
         public string $text,
         #[ORM\Column(type: 'boolean')]
-        public bool $isCorrect
-    )
-    {
+        public bool $isCorrect,
+    ) {
     }
 
     final public function setQuestion(Question $question): self

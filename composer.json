@@ -20,6 +20,10 @@
         }
     },
     "scripts": {
+        "phpunit-with-coverage": "vendor/bin/phpunit --coverage-clover=coverage.xml",
+        "phpstan": "vendor/bin/phpstan analyze src/",
+        "phpcs": "vendor/bin/phpcs --colors -n -s --standard=phpcs_ruleset.xml src/",
+        "php-cs-fixer": "vendor/bin/php-cs-fixer fix --dry-run",
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
             "assets:install %PUBLIC_DIR%": "symfony-cmd"
@@ -30,7 +34,10 @@
         "symfony/browser-kit": "^7.1",
         "symfony/css-selector": "^7.1",
         "symfony/phpunit-bridge": "^7.1",
-        "doctrine/doctrine-fixtures-bundle": "^3.6"
+        "doctrine/doctrine-fixtures-bundle": "^3.6",
+        "phpstan/phpstan": "^1.12",
+        "squizlabs/php_codesniffer": "^3.10",
+        "friendsofphp/php-cs-fixer": "^3.64"
     },
     "autoload": {
         "psr-4": {
