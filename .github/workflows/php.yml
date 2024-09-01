@@ -42,7 +42,7 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     needs: test
-    if: github.ref == 'refs/heads/master'
+    if: github.ref == 'refs/heads/main'
     steps:
       - uses: actions/checkout@v4
 
@@ -54,6 +54,15 @@ jobs:
 
       - name: Install dependencies without dev
         run: composer install --prefer-dist --no-progress --no-dev
+
+      - name: Create database
+        run: bin/console doctrine:database:create
+
+      - name: Run migrations
+        run: bin/console doctrine:migrations:migrate --no-interaction
+
+      - name: Load fixtures
+        run: bin/console doctrine:fixtures:load --no-interaction
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
