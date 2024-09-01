@@ -12,32 +12,7 @@ class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        $manager->persist(
-            (new Test(
-                title: 'Test 1',
-                text: 'test description'
-            ))->addQuestion(
-                (new Question(
-                    text: '2 + 2 ='
-                ))->addAnswer(
-                    new Answer('4', true)
-                )->addAnswer(
-                    new Answer('3', false)
-                )->addAnswer(
-                    new Answer('1 + 3', true)
-                )
-            )->addQuestion(
-                (new Question(
-                    text: '2 + 3 ='
-                ))->addAnswer(
-                    new Answer('5', true)
-                )->addAnswer(
-                    new Answer('8', false)
-                )->addAnswer(
-                    new Answer('0', false)
-                )
-            )
-        );
+        $manager->persist(self::prepareTest());
 
         $manager->persist(
             (new Test(
@@ -184,5 +159,33 @@ class AppFixtures extends Fixture
 
 
         $manager->flush();
+    }
+
+    public static function prepareTest(): Test
+    {
+        return (new Test(
+            title: 'Test 1',
+            text: 'test description'
+        ))->addQuestion(
+            (new Question(
+                text: '2 + 2 ='
+            ))->addAnswer(
+                new Answer('4', true)
+            )->addAnswer(
+                new Answer('3', false)
+            )->addAnswer(
+                new Answer('1 + 3', true)
+            )
+        )->addQuestion(
+            (new Question(
+                text: '2 + 3 ='
+            ))->addAnswer(
+                new Answer('5', true)
+            )->addAnswer(
+                new Answer('8', false)
+            )->addAnswer(
+                new Answer('0', false)
+            )
+        );
     }
 }

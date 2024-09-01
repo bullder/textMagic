@@ -13,7 +13,7 @@ class TestRepository extends ServiceEntityRepository
         parent::__construct($registry, Test::class);
     }
 
-    final public function getTitles(): array
+    public function getTitles(): array
     {
         return $this->createQueryBuilder('t')
             ->select('t.id', 't.title', 't.text')
@@ -21,7 +21,7 @@ class TestRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    final public function findOneById(int $id): ?Test
+    public function findOneById(int $id): ?Test
     {
         return $this->createQueryBuilder('t')
             ->andWhere('t.id = :id')
