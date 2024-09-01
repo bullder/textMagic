@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Test{% endblock %}
+
+{% block body %}
+        <form action="{{ path('result', {'id': test.id}) }}" method="post" class="list-group list-group-checkable" id="test-form">
+            {% for question in test.questions|shuffle %}
+                <div>
+                    <p>Question {{ loop.index }}.</p>
+                    <p>{{ question.text }}</p>
+                    {% for answer in question.answers %}
+                        <input class="list-group-item-check pe-none" type="radio" name="{{ question.id }}" id="{{ answer.id }}"  value="{{ answer.id }}">
+                        <label class="list-group-item rounded-3 py-3" for="{{ answer.id }}">
+                            {{ answer.text }}
+                        </label>
+                    {% endfor %}
+                    <hr />
+                </div>
+            {% endfor %}
+            <button type="reset" class="btn">Reset</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+{% endblock %}
+
+
+{% block js %}
+            <script src="/assets/form.js"></script>
+{% endblock %}

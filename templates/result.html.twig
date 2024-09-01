@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Test Result{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Test Result #{{ result.id }} for {{ result.getTest().text }}</h3>
+                    </div>
+                    <div class="card-body">
+                        <p class="text-center">Score: {{ result.score }} / {{ result.maxScore }}</p>
+                        <div class="list-group">
+                            {% for question in result.resultQuestions %}
+                                {% if question.selectedAnswer.isCorrect %}
+                                    <span class="badge bg-success">Correct</span>
+                                {% else %}
+                                    <span class="badge bg-danger">Incorrect</span>
+                                {% endif %}
+                                <p>Question {{ loop.index }}.</p>
+                                <p>{{ question.question.text }}</p>
+
+                                <ul class="list-group">
+                                    {% for answer in question.question.answers %}
+                                        <li class="list-group-item {% if question.selectedAnswer.id == answer.id %}list-group-item-primary{% endif %}">
+                                            {{ answer.text }}
+                                            {% if answer.isCorrect %}
+                                                <span class="badge bg-success">Correct</span>
+                                            {% endif %}
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            <hr />
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="d-grid gap-2">
+        <a href="{{ path('index') }}" class="btn btn-primary">Back to list of tests</a>
+    </div>
+{% endblock %}
