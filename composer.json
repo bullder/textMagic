@@ -6,6 +6,8 @@
     ],
     "license": "MIT",
     "require": {
+        "php": "^8.3.0",
+        "ext-pdo_sqlite": "*",
         "symfony/framework-bundle": "^7.1",
         "twig/twig": "^3.12",
         "symfony/flex": "^2.4",
