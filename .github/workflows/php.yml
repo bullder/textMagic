@@ -53,16 +53,7 @@ jobs:
           coverage: pcov
 
       - name: Install dependencies
-        run: composer install --prefer-dist --no-progress
-
-      - name: Create database
-        run: bin/console doctrine:database:create
-
-      - name: Run migrations
-        run: bin/console doctrine:migrations:migrate --no-interaction
-
-      - name: Load fixtures
-        run: bin/console doctrine:fixtures:load --no-interaction
+        run: composer install --prefer-dist --no-progress --no-dev
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
