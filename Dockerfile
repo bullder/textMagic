@@ -1,7 +1,6 @@
 FROM php:8.3-fpm-alpine3.19
 
 ENV APP_DIR /app
-ENV APP_ENV prod
 
 WORKDIR $APP_DIR
 

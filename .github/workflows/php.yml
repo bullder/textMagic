@@ -64,9 +64,6 @@ jobs:
       - name: Load fixtures
         run: bin/console doctrine:fixtures:load --no-interaction
 
-      - name: Install dependencies without dev
-        run: composer install --prefer-dist --no-progress --no-dev
-
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
 
