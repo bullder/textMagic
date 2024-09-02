@@ -24,5 +24,84 @@
 
 
 {% block js %}
-            <script src="/assets/form.js"></script>
+    <script>
+        document.getElementById('test-form').addEventListener('submit', function(event) {
+            let allAnswered = true;
+            const questions = document.querySelectorAll('input[type="radio"]');
+            const questionGroups = {};
+            let firstUnansweredElement = null;
+
+            questions.forEach(function(question) {
+                if (!questionGroups[question.name]) {
+                    questionGroups[question.name] = false;
+                }
+                if (question.checked) {
+                    questionGroups[question.name] = true;
+                }
+            });
+
+            for (const question in questionGroups) {
+                if (!questionGroups[question]) {
+                    allAnswered = false;
+                    if (!firstUnansweredElement) {
+                        firstUnansweredElement = document.querySelector(`input[name="${question}"]`);
+                    }
+                }
+            }
+
+            if (!allAnswered) {
+                event.preventDefault();
+                if (firstUnansweredElement) {
+                    firstUnansweredElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+                alert('Please answer all questions before submitting.');
+            }
+        });
+    </script>
+    <style>
+        .list-group {
+            min-width: 480px;
+            margin-inline: 1.5rem;
+        }
+
+        .list-group label {
+            margin: 5px 0;
+        }
+
+        [contenteditable]:focus {
+            outline: 0;
+        }
+
+        .list-group-checkable .list-group-item {
+            cursor: pointer;
+        }
+        .list-group-item-check {
+            position: absolute;
+            clip: rect(0, 0, 0, 0);
+        }
+        .list-group-item-check:checked + .list-group-item {
+            color: #fff;
+        }
+        .list-group-item-check[disabled] + .list-group-item,
+        .list-group-item-check:disabled + .list-group-item {
+            pointer-events: none;
+            filter: none;
+            opacity: .5;
+        }
+
+        .list-group-radio .list-group-item {
+            cursor: pointer;
+            border-radius: .5rem;
+        }
+        .list-group-radio .form-check-input {
+            z-index: 2;
+            margin-top: -.5em;
+        }
+        .list-group-radio .form-check-input[disabled] + .list-group-item,
+        .list-group-radio .form-check-input:disabled + .list-group-item {
+            pointer-events: none;
+            filter: none;
+            opacity: .5;
+        }
+    </style>
 {% endblock %}
